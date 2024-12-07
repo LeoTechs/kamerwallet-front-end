@@ -1,35 +1,35 @@
 import React,{useState} from 'react';
 function Connexion() {
 
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const [error, setError] = useState('');
-    const handleSubmit = async (e) => {
-        e.preventDefault();
+    // const [email, setEmail] = useState('');
+    // const [password, setPassword] = useState('');
+    // const [error, setError] = useState('');
+    // const handleSubmit = async (e) => {
+    //     e.preventDefault();
         
-        try{
-            const response = await axios.post('http://localhost:8083/users/connexion', {email, password});
+    //     try{
+    //         const response = await axios.post('http://localhost:8083/users/connexion', {email, password});
 
-            localStorage.setItem('token', response.data.token);
+    //         localStorage.setItem('token', response.data.token);
 
-            window.location.href = '/dashboard';
-    }catch(err){
-        setError(err.response.data.message);
-    };
+    //         window.location.href = '/dashboard';
+    // }catch(err){
+    //     setError(err.response.data.message);
+    // };
 
-    axios.interceptors.request.use(
-        (config) => {
-            const token = localStorage.getItem('token');
-            config.headers.Authorization = `Bearer ${token}`;
-             if (token) {
-                config.headers.Authorization = `Bearer ${token}`;
-        }
-        return config;
-    },
-    (error) => {
-        return Promise.reject(error);
-    }
-    );
+    // axios.interceptors.request.use(
+    //     (config) => {
+    //         const token = localStorage.getItem('token');
+    //         config.headers.Authorization = `Bearer ${token}`;
+    //          if (token) {
+    //             config.headers.Authorization = `Bearer ${token}`;
+    //     }
+    //     return config;
+    // },
+    // (error) => {
+    //     return Promise.reject(error);
+    // }
+    // );
 
 
   return (
@@ -49,7 +49,7 @@ function Connexion() {
             <h2 className="mt-10 text-center text-2xl/9 font-bold tracking-tight text-gray-900">
              Bienvenue sur votre espace client
             </h2>
-            <form  onSubmit={handleSubmit} method="POST" className="mt-10 space-y-6">
+            <form   method="POST" className="mt-10 space-y-6">
               <div>
                 <label htmlFor="email" className=" text-sm/6 font-medium text-gray-900">
                   Adresse Email 
@@ -59,8 +59,8 @@ function Connexion() {
                     id="email"
                     name="email"
                     type="email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
+                    // value={email}
+                    // onChange={(e) => setEmail(e.target.value)}
                     required
                     autoComplete="email"
                     className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
@@ -85,8 +85,8 @@ function Connexion() {
                     id="password"
                     name="password"
                     type="password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
+                    // value={password}
+                    // onChange={(e) => setPassword(e.target.value)}
                     required
                     autoComplete="current-password"
                     className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
@@ -121,6 +121,6 @@ function Connexion() {
     </div>
   );
 }
-}
+
 
 export default Connexion;
